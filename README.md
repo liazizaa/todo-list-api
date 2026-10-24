@@ -9,10 +9,10 @@ REST API sederhana untuk **Aplikasi To-Do List**, dibuat sebagai Tugas Akhir *Le
 ## URL Deployment
 
 ```
-https://nama-project.vercel.app
+https://todo-list-api-six-ruddy.vercel.app
 ```
 
-> Ganti `nama-project` di README ini dengan URL Vercel milikmu setelah deploy.
+
 
 ## Hubungan dengan Project Preparation
 
@@ -109,7 +109,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Tambah Tugas
 ```
 - Method       : POST
-- URL          : https://nama-project.vercel.app/tasks
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tasks
 - Deskripsi    : Menambahkan tugas baru (tambahTugas). tag_ids opsional.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -156,7 +156,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Daftar Tugas
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/tasks
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tasks
 - Deskripsi    : Mengambil semua tugas (getDataTugas). Filter opsional lewat query: user_id, category_id, is_done (true/false), priority (rendah/sedang/tinggi), tag_id, search. Contoh: /tasks?user_id=1&is_done=false
 - Headers      : -
 - Request Body : -
@@ -195,7 +195,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Detail Tugas
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/tasks/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tasks/1
 - Deskripsi    : Mengambil satu tugas berdasarkan ID (getTugasById), lengkap dengan nama kategori dan tag.
 - Headers      : -
 - Request Body : -
@@ -231,7 +231,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Ubah Tugas (PUT)
 ```
 - Method       : PUT
-- URL          : https://nama-project.vercel.app/tasks/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tasks/1
 - Deskripsi    : Mengubah seluruh data tugas (ubahTugas). title wajib; field lain yang tidak dikirim akan dikosongkan. Jika tag_ids dikirim, tag lama diganti.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -278,7 +278,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Ubah Sebagian Tugas (PATCH)
 ```
 - Method       : PATCH
-- URL          : https://nama-project.vercel.app/tasks/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tasks/1
 - Deskripsi    : Mengubah sebagian data tugas; kirim hanya field yang ingin diubah.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -317,7 +317,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Tandai Tugas Selesai
 ```
 - Method       : PATCH
-- URL          : https://nama-project.vercel.app/tasks/1/done
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tasks/1/done
 - Deskripsi    : Menandai tugas selesai (tandaiTugasSelesai): is_done menjadi true dan completed_at terisi. Tanpa request body.
 - Headers      : -
 - Request Body : -
@@ -353,7 +353,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Hapus Tugas
 ```
 - Method       : DELETE
-- URL          : https://nama-project.vercel.app/tasks/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tasks/1
 - Deskripsi    : Menghapus tugas berdasarkan ID (hapusTugas).
 - Headers      : -
 - Request Body : -
@@ -372,7 +372,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Tambah User
 ```
 - Method       : POST
-- URL          : https://nama-project.vercel.app/users
+- URL          : https://todo-list-api-six-ruddy.vercel.app/users
 - Deskripsi    : Menambahkan user baru. Password di-hash (bcrypt) dan tidak pernah dikembalikan di response.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -400,7 +400,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Daftar User
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/users
+- URL          : https://todo-list-api-six-ruddy.vercel.app/users
 - Deskripsi    : Mengambil semua user.
 - Headers      : -
 - Request Body : -
@@ -421,7 +421,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Detail User
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/users/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/users/1
 - Deskripsi    : Mengambil satu user berdasarkan ID.
 - Headers      : -
 - Request Body : -
@@ -444,7 +444,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Ubah User
 ```
 - Method       : PUT
-- URL          : https://nama-project.vercel.app/users/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/users/1
 - Deskripsi    : Mengubah username dan email. password opsional (jika dikirim, diganti).
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -471,7 +471,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Hapus User
 ```
 - Method       : DELETE
-- URL          : https://nama-project.vercel.app/users/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/users/1
 - Deskripsi    : Menghapus user beserta profil, kategori, dan tugasnya (ON DELETE CASCADE).
 - Headers      : -
 - Request Body : -
@@ -488,7 +488,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Lihat Profil User
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/users/1/profile
+- URL          : https://todo-list-api-six-ruddy.vercel.app/users/1/profile
 - Deskripsi    : Mengambil profil user (relasi 1:1).
 - Headers      : -
 - Request Body : -
@@ -512,7 +512,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Simpan Profil User
 ```
 - Method       : PUT
-- URL          : https://nama-project.vercel.app/users/1/profile
+- URL          : https://todo-list-api-six-ruddy.vercel.app/users/1/profile
 - Deskripsi    : Membuat profil jika belum ada, atau mengubahnya jika sudah ada.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -543,7 +543,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Tambah Kategori
 ```
 - Method       : POST
-- URL          : https://nama-project.vercel.app/categories
+- URL          : https://todo-list-api-six-ruddy.vercel.app/categories
 - Deskripsi    : Menambahkan kategori milik seorang user. Nama kategori harus unik per user.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -569,7 +569,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Daftar Kategori
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/categories
+- URL          : https://todo-list-api-six-ruddy.vercel.app/categories
 - Deskripsi    : Mengambil semua kategori. Filter opsional: ?user_id=1
 - Headers      : -
 - Request Body : -
@@ -593,7 +593,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Detail Kategori
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/categories/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/categories/1
 - Deskripsi    : Mengambil satu kategori berdasarkan ID.
 - Headers      : -
 - Request Body : -
@@ -615,7 +615,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Ubah Kategori
 ```
 - Method       : PUT
-- URL          : https://nama-project.vercel.app/categories/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/categories/1
 - Deskripsi    : Mengubah nama kategori.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -640,7 +640,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Hapus Kategori
 ```
 - Method       : DELETE
-- URL          : https://nama-project.vercel.app/categories/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/categories/1
 - Deskripsi    : Menghapus kategori. Tugas terkait tidak ikut terhapus (category_id menjadi NULL).
 - Headers      : -
 - Request Body : -
@@ -659,7 +659,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Tambah Tag
 ```
 - Method       : POST
-- URL          : https://nama-project.vercel.app/tags
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tags
 - Deskripsi    : Menambahkan tag baru (nama harus unik).
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -683,7 +683,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Daftar Tag
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/tags
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tags
 - Deskripsi    : Mengambil semua tag.
 - Headers      : -
 - Request Body : -
@@ -702,7 +702,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Detail Tag
 ```
 - Method       : GET
-- URL          : https://nama-project.vercel.app/tags/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tags/1
 - Deskripsi    : Mengambil satu tag berdasarkan ID.
 - Headers      : -
 - Request Body : -
@@ -723,7 +723,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Ubah Tag
 ```
 - Method       : PUT
-- URL          : https://nama-project.vercel.app/tags/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tags/1
 - Deskripsi    : Mengubah nama tag.
 - Headers      : Content-Type: application/json
 - Request Body :
@@ -747,7 +747,7 @@ Semua error memakai format `{"error": "pesan yang jelas"}`.
 ### Hapus Tag
 ```
 - Method       : DELETE
-- URL          : https://nama-project.vercel.app/tags/1
+- URL          : https://todo-list-api-six-ruddy.vercel.app/tags/1
 - Deskripsi    : Menghapus tag (relasi di task_tags ikut terhapus).
 - Headers      : -
 - Request Body : -
