@@ -1,0 +1,41 @@
+Table users {
+  id serial [pk]
+  username varchar(50) [not null, unique]
+  email varchar(100) [not null, unique]
+  password varchar(255) [not null]
+  created_at timestamp [not null, default: `now()`]
+}
+Table user_profiles {
+  id serial [pk]
+  user_id int [not null, unique, ref: - users.id]
+  full_name varchar(100) [not null]
+  phone varchar(20)
+  bio text
+}
+Table categories {
+  id serial [pk]
+  user_id int [not null, ref: > users.id]
+  name varchar(50) [not null]
+  indexes { (user_id, name) [unique] }
+}
+Table tasks {
+  id serial [pk]
+  user_id int [not null, ref: > users.id]
+  category_id int [ref: > categories.id]
+  title varchar(150) [not null]
+  description text
+  due_date date
+  priority varchar(10) [not null, default: 'sedang', note: "rendah | sedang | tinggi"]
+  is_done boolean [not null, default: false]
+  completed_at timestamp
+  created_at timestamp [not null, default: `now()`]
+}
+Table tags {
+  id serial [pk]
+  name varchar(30) [not null, unique]
+}
+Table task_tags {
+  task_id int [not null, ref: > tasks.id]
+  tag_id int [not null, ref: > tags.id]
+  indexes { (task_id, tag_id) [pk] }
+}

@@ -1,0 +1,601 @@
+{
+  "info": {
+    "name": "To-Do List API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://nama-project.vercel.app"
+    }
+  ],
+  "item": [
+    {
+      "name": "Tugas (Tasks)",
+      "item": [
+        {
+          "name": "POST Tambah Tugas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": "Menambahkan tugas baru (tambahTugas). tag_ids opsional.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"category_id\": 1,\n  \"title\": \"Kerjakan tugas akhir backend\",\n  \"description\": \"Buat REST API dan deploy ke Vercel\",\n  \"due_date\": \"2026-11-01\",\n  \"priority\": \"tinggi\",\n  \"tag_ids\": [\n    1\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET Daftar Tugas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": "Mengambil semua tugas (getDataTugas). Filter opsional lewat query: user_id, category_id, is_done (true/false), priority (rendah/sedang/tinggi), tag_id, search. Contoh: /tasks?user_id=1&is_done=false"
+          }
+        },
+        {
+          "name": "GET Detail Tugas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "1"
+              ]
+            },
+            "description": "Mengambil satu tugas berdasarkan ID (getTugasById), lengkap dengan nama kategori dan tag."
+          }
+        },
+        {
+          "name": "PUT Ubah Tugas (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "1"
+              ]
+            },
+            "description": "Mengubah seluruh data tugas (ubahTugas). title wajib; field lain yang tidak dikirim akan dikosongkan. Jika tag_ids dikirim, tag lama diganti.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Kerjakan tugas akhir (revisi)\",\n  \"description\": \"Tambah dokumentasi\",\n  \"due_date\": \"2026-11-02\",\n  \"priority\": \"sedang\",\n  \"category_id\": 1,\n  \"tag_ids\": [\n    1,\n    2\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH Ubah Sebagian Tugas (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "1"
+              ]
+            },
+            "description": "Mengubah sebagian data tugas; kirim hanya field yang ingin diubah.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"priority\": \"rendah\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH Tandai Tugas Selesai",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/1/done",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "1",
+                "done"
+              ]
+            },
+            "description": "Menandai tugas selesai (tandaiTugasSelesai): is_done menjadi true dan completed_at terisi. Tanpa request body."
+          }
+        },
+        {
+          "name": "DELETE Hapus Tugas",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "1"
+              ]
+            },
+            "description": "Menghapus tugas berdasarkan ID (hapusTugas)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "User & Profil",
+      "item": [
+        {
+          "name": "POST Tambah User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Menambahkan user baru. Password di-hash (bcrypt) dan tidak pernah dikembalikan di response.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"aulia\",\n  \"email\": \"aulia@example.com\",\n  \"password\": \"rahasia123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET Daftar User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Mengambil semua user."
+          }
+        },
+        {
+          "name": "GET Detail User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            },
+            "description": "Mengambil satu user berdasarkan ID."
+          }
+        },
+        {
+          "name": "PUT Ubah User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            },
+            "description": "Mengubah username dan email. password opsional (jika dikirim, diganti).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"aulia_baru\",\n  \"email\": \"aulia@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE Hapus User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            },
+            "description": "Menghapus user beserta profil, kategori, dan tugasnya (ON DELETE CASCADE)."
+          }
+        },
+        {
+          "name": "GET Lihat Profil User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1",
+                "profile"
+              ]
+            },
+            "description": "Mengambil profil user (relasi 1:1)."
+          }
+        },
+        {
+          "name": "PUT Simpan Profil User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/1/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1",
+                "profile"
+              ]
+            },
+            "description": "Membuat profil jika belum ada, atau mengubahnya jika sudah ada.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Aulia Dwiyanti Nur Azizah\",\n  \"phone\": \"081234567890\",\n  \"bio\": \"Mahasiswa backend\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Kategori (Categories)",
+      "item": [
+        {
+          "name": "POST Tambah Kategori",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Menambahkan kategori milik seorang user. Nama kategori harus unik per user.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"name\": \"Kuliah\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET Daftar Kategori",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Mengambil semua kategori. Filter opsional: ?user_id=1"
+          }
+        },
+        {
+          "name": "GET Detail Kategori",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                "1"
+              ]
+            },
+            "description": "Mengambil satu kategori berdasarkan ID."
+          }
+        },
+        {
+          "name": "PUT Ubah Kategori",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                "1"
+              ]
+            },
+            "description": "Mengubah nama kategori.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Perkuliahan\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE Hapus Kategori",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                "1"
+              ]
+            },
+            "description": "Menghapus kategori. Tugas terkait tidak ikut terhapus (category_id menjadi NULL)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tag",
+      "item": [
+        {
+          "name": "POST Tambah Tag",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags"
+              ]
+            },
+            "description": "Menambahkan tag baru (nama harus unik).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"penting\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET Daftar Tag",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags"
+              ]
+            },
+            "description": "Mengambil semua tag."
+          }
+        },
+        {
+          "name": "GET Detail Tag",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tags/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags",
+                "1"
+              ]
+            },
+            "description": "Mengambil satu tag berdasarkan ID."
+          }
+        },
+        {
+          "name": "PUT Ubah Tag",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags",
+                "1"
+              ]
+            },
+            "description": "Mengubah nama tag.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"sangat-penting\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE Hapus Tag",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tags/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags",
+                "1"
+              ]
+            },
+            "description": "Menghapus tag (relasi di task_tags ikut terhapus)."
+          }
+        }
+      ]
+    }
+  ]
+}
